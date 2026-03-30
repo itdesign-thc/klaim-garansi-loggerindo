@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Garansi & Training – Loggerindo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy:   #0a1628;
+    --navy2:  #132040;
+    --gold:   #c9982a;
+    --gold-lt:#f0c84e;
+    --ice:    #e8f0fb;
+    --slate:  #4a5568;
+    --white:  #ffffff;
+    --radius: 14px;
+    --shadow: 0 8px 32px rgba(10,22,40,.13);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f4f7fc;
+    color: var(--navy);
+    line-height: 1.65;
+  }
+
+  /* ── HERO ─────────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--navy);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 80% at 110% 50%, rgba(201,152,42,.22) 0%, transparent 65%),
+      radial-gradient(ellipse 60% 70% at -10% 60%, rgba(19,32,64,.8) 0%, transparent 70%),
+      url("https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1400&q=80") center/cover no-repeat;
+    filter: brightness(.55);
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: .3rem .85rem;
+    border-radius: 999px;
+    margin-bottom: 1.1rem;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.15;
+    max-width: 680px;
+  }
+
+  .hero h1 span {
+    color: var(--gold-lt);
+  }
+
+  .hero-sub {
+    margin-top: 1.1rem;
+    color: rgba(255,255,255,.78);
+    font-size: 1.05rem;
+    max-width: 560px;
+    font-weight: 300;
+  }
+
+  /* ── LAYOUT ────────────────────────────────────────────────── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  section { padding: 3.5rem 0; }
+
+  .section-label {
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: .5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: var(--navy);
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+
+  /* ── HIGHLIGHT BOXES (keterangan garansi) ─────────────────── */
+  .highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .highlight-box {
+    background: var(--white);
+    border-left: 4px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.5rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: transform .2s, box-shadow .2s;
+  }
+
+  .highlight-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px rgba(10,22,40,.16);
+  }
+
+  .hb-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--navy), var(--navy2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.25rem;
+  }
+
+  .hb-text strong {
+    display: block;
+    font-size: .95rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: .25rem;
+  }
+
+  .hb-text span {
+    font-size: .87rem;
+    color: var(--slate);
+  }
+
+  /* ── ACCORDION ─────────────────────────────────────────────── */
+  .accordion-wrap {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .accordion-item { border-bottom: 1px solid #e2e8f0; }
+  .accordion-item:last-child { border-bottom: none; }
+
+  .accordion-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1.1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .95rem;
+    font-weight: 500;
+    color: var(--navy);
+    text-align: left;
+    transition: background .15s;
+    gap: 1rem;
+  }
+
+  .accordion-btn:hover { background: var(--ice); }
+
+  .accordion-btn.active {
+    background: var(--navy);
+    color: var(--white);
+  }
+
+  .accordion-btn.active .acc-icon { transform: rotate(45deg); color: var(--gold-lt); }
+
+  .acc-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(201,152,42,.15);
+    color: var(--gold);
+    font-size: .78rem;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .accordion-btn.active .acc-num { background: rgba(240,200,78,.18); color: var(--gold-lt); }
+
+  .acc-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    transition: transform .25s;
+  }
+
+  .accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease, padding .25s;
+  }
+
+  .accordion-body.open { max-height: 200px; }
+
+  .accordion-body-inner {
+    padding: 1rem 1.5rem 1.2rem 4rem;
+    font-size: .9rem;
+    color: var(--slate);
+    line-height: 1.7;
+  }
+
+  /* ── DIVIDER ───────────────────────────────────────────────── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #cbd5e0, transparent);
+    margin: .5rem 0;
+  }
+
+  /* ── FORM KLAIM GARANSI ────────────────────────────────────── */
+  .form-section {
+    background: var(--navy);
+    padding: 4rem 0;
+  }
+
+  .form-section .section-title { color: var(--white); }
+  .form-section .section-label { color: var(--gold-lt); }
+
+  .form-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    overflow: hidden;
+  }
+
+  /* header info grid */
+  .form-header-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+    border-bottom: 2px solid var(--navy);
+  }
+
+  .fh-cell {
+    padding: .9rem 1.2rem;
+    border-right: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+  }
+
+  .fh-cell:last-child { border-right: none; }
+
+  .fh-cell label {
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+
+  .fh-cell input {
+    border: none;
+    border-bottom: 1.5px solid #cbd5e0;
+    padding: .3rem 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .93rem;
+    color: var(--navy);
+    outline: none;
+    background: transparent;
+    transition: border-color .2s;
+  }
+
+  .fh-cell input:focus { border-color: var(--gold); }
+
+  /* table */
+  .items-table-wrap { overflow-x: auto; padding: 1.5rem; }
+
+  .items-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .87rem;
+  }
+
+  .items-table thead tr {
+    background: var(--navy);
+    color: var(--white);
+  }
+
+  .items-table thead th {
+    padding: .75rem 1rem;
+    font-weight: 600;
+    font-size: .78rem;
+    letter-spacing: .06em;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .items-table thead th.center { text-align: center; }
+
+  .items-table tbody tr { border-bottom: 1px solid #e2e8f0; }
+  .items-table tbody tr:last-child { border-bottom: none; }
+  .items-table tbody tr:hover { background: var(--ice); }
+
+  .items-table td {
+    padding: .6rem 1rem;
+    color: var(--navy);
+  }
+
+  .items-table td.num { text-align: center; font-weight: 700; color: var(--gold); width: 40px; }
+
+  .items-table td input[type="text"],
+  .items-table td input[type="number"] {
+    width: 100%;
+    border: none;
+    border-bottom: 1.5px solid #e2e8f0;
+    padding: .25rem .15rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .87rem;
+    background: transparent;
+    outline: none;
+    transition: border-color .2s;
+  }
+
+  .items-table td input:focus { border-color: var(--gold); }
+
+  .cond-wrap { display: flex; gap: .5rem; justify-content: center; }
+
+  .cond-label {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    font-size: .8rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .cond-label input[type="radio"] { accent-color: var(--gold); }
+
+  /* checklist section */
+  .checklist-section {
+    border-top: 2px solid var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  @media(max-width: 640px) { .checklist-section { grid-template-columns: 1fr; } }
+
+  .cl-panel { padding: 1.4rem 1.5rem; }
+  .cl-panel:first-child { border-right: 1px solid #e2e8f0; }
+
+  .cl-panel h3 {
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 1rem;
+  }
+
+  .cl-item {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    padding: .45rem 0;
+    border-bottom: 1px dashed #e2e8f0;
+    font-size: .88rem;
+    color: var(--navy);
+  }
+
+  .cl-item:last-child { border-bottom: none; }
+
+  .cl-item input[type="checkbox"] {
+    width: 16px; height: 16px;
+    accent-color: var(--gold);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .cl-note { font-size: .72rem; color: var(--slate); margin-left: auto; }
+
+  /* textarea deskripsi */
+  .desc-textarea {
+    width: 100%;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    padding: .7rem .9rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .88rem;
+    color: var(--navy);
+    resize: vertical;
+    outline: none;
+    margin-top: .5rem;
+    transition: border-color .2s;
+  }
+
+  .desc-textarea:focus { border-color: var(--gold); }
+
+  .hasil-section {
+    border-top: 1px solid #e2e8f0;
+    padding: 1.2rem 1.5rem;
+  }
+
+  .hasil-section label {
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--slate);
+    display: block;
+    margin-bottom: .3rem;
+  }
+
+  /* submit */
+  .form-footer {
+    background: var(--navy2);
+    padding: 1.4rem 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .btn-reset {
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,.3);
+    color: rgba(255,255,255,.7);
+    font-family: 'DM Sans', sans-serif;
+    font-size: .9rem;
+    font-weight: 500;
+    padding: .7rem 1.6rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+
+  .btn-reset:hover { border-color: white; color: white; }
+
+  .btn-submit {
+    background: linear-gradient(135deg, var(--gold), #e6a820);
+    border: none;
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-size: .95rem;
+    font-weight: 700;
+    padding: .75rem 2.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: .04em;
+    box-shadow: 0 4px 16px rgba(201,152,42,.4);
+    transition: all .2s;
+  }
+
+  .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(201,152,42,.5);
+  }
+
+  /* ── FOOTER ────────────────────────────────────────────────── */
+  .site-footer {
+    background: #060e1c;
+    color: rgba(255,255,255,.45);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: .82rem;
+  }
+
+  /* ── ANIMATIONS ────────────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(22px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  .hero-content > * { animation: fadeUp .7s ease both; }
+  .hero-content > *:nth-child(1) { animation-delay: .05s; }
+  .hero-content > *:nth-child(2) { animation-delay: .2s; }
+  .hero-content > *:nth-child(3) { animation-delay: .35s; }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══════════════════════════════════════════════════════ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Layanan Purna Jual</span>
+    <h1>Klaim Garansi Alat Anda<br /><span>dengan Mudah.</span></h1>
+    <p class="hero-sub">
+      Loggerindo melayani garansi setiap unit selama <strong style="color:#f0c84e">satu tahun</strong>
+      sejak tanggal pembelian dan training alat atau instrumentasi pengujian — ke seluruh Indonesia.
+    </p>
+  </div>
+</header>
+
+<!-- ══ KETERANGAN GARANSI ════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <p class="section-label">Ketentuan</p>
+    <h2 class="section-title">Keterangan Garansi</h2>
+
+    <div class="highlight-grid">
+      <div class="highlight-box">
+        <div class="hb-icon">🛠️</div>
+        <div class="hb-text">
+          <strong>Garansi Service 1 Tahun</strong>
+          <span>Garansi service selama 1 tahun di luar biaya sparepart untuk setiap unit.</span>
+        </div>
+      </div>
+      <div class="highlight-box">
+        <div class="hb-icon">🚗</div>
+        <div class="hb-text">
+          <strong>Biaya Kunjungan Ditanggung Customer</strong>
+          <span>Biaya kunjungan Engineering ke Customer ditanggung oleh Customer apabila ada kerusakan barang.</span>
+        </div>
+      </div>
+      <div class="highlight-box">
+        <div class="hb-icon">📦</div>
+        <div class="hb-text">
+          <strong>Pengiriman ke Penjual</strong>
+          <span>Jika barang dikirim ke Penjual, biaya pengiriman ditanggung sepenuhnya oleh Customer.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCORDION: Hal yang membatalkan garansi -->
+    <p class="section-label" style="margin-top:2rem">Penting Diketahui</p>
+    <h2 class="section-title">Hal – Hal yang Dapat Membatalkan Garansi</h2>
+
+    <div class="accordion-wrap">
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAcc(this)">
+          <span class="acc-num">1</span>
+          <span style="flex:1">Kartu Garansi Tidak Diisi Lengkap / Tanpa Cap Dealer</span>
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            Garansi dinyatakan tidak berlaku apabila kartu garansi tidak diisi dengan lengkap
+            atau tidak terdapat cap resmi dari dealer yang bersangkutan.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAcc(this)">
+          <span class="acc-num">2</span>
+          <span style="flex:1">Produk Rusak Akibat Kesalahan Pemakaian / Faktor Eksternal</span>
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            Kerusakan yang disebabkan oleh pengoperasian di luar spesifikasi produk, kesalahan pemakaian,
+            terkena cairan, bencana alam, atau perubahan tegangan listrik tidak termasuk dalam cakupan garansi.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAcc(this)">
+          <span class="acc-num">3</span>
+          <span style="flex:1">Produk Telah Direparasi / Diubah oleh Pihak Lain</span>
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            Apabila produk telah dibuka, direparasi, atau dimodifikasi atas permintaan sendiri maupun oleh
+            pihak ketiga (segel rusak & garansi batal), klaim garansi tidak dapat diproses.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ FORM KLAIM GARANSI ════════════════════════════════════════ -->
+<section class="form-section">
+  <div class="container">
+    <p class="section-label">Ajukan Sekarang</p>
+    <h2 class="section-title">Form Klaim Garansi</h2>
+
+    <div class="form-card">
+
+      <!-- Header info -->
+      <div class="form-header-grid">
+        <div class="fh-cell">
+          <label>Nomor</label>
+          <input type="text" placeholder="No. Klaim" />
+        </div>
+        <div class="fh-cell">
+          <label>Tanggal</label>
+          <input type="date" />
+        </div>
+        <div class="fh-cell">
+          <label>Marketing</label>
+          <input type="text" placeholder="Nama Marketing" />
+        </div>
+        <div class="fh-cell">
+          <label>Nama Perusahaan</label>
+          <input type="text" placeholder="PT / CV …" />
+        </div>
+        <div class="fh-cell">
+          <label>Nama Customer</label>
+          <input type="text" placeholder="Nama lengkap" />
+        </div>
+        <div class="fh-cell">
+          <label>Telp / HP</label>
+          <input type="text" placeholder="08xx-xxxx-xxxx" />
+        </div>
+      </div>
+
+      <!-- Item table -->
+      <div class="items-table-wrap">
+        <table class="items-table">
+          <thead>
+            <tr>
+              <th class="center">No.</th>
+              <th>Nama Barang</th>
+              <th>Merk / Tipe / Model</th>
+              <th>Nomor Seri</th>
+              <th class="center">Kuantitas</th>
+              <th class="center" colspan="2">Kondisi</th>
+            </tr>
+            <tr style="background:#1a2f52">
+              <th></th><th></th><th></th><th></th><th></th>
+              <th class="center" style="color:var(--gold-lt)">OK</th>
+              <th class="center" style="color:#fc8181">NG</th>
+            </tr>
+          </thead>
+          <tbody id="itemsBody">
+            <!-- rows injected by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Row controls -->
+      <div style="padding:.75rem 1.5rem;border-top:1px solid #e2e8f0;display:flex;gap:.75rem;align-items:center;background:#f8fafc;">
+        <button type="button" onclick="addRow()" style="
+          display:flex;align-items:center;gap:.45rem;
+          background:var(--navy);color:var(--white);border:none;
+          padding:.5rem 1.1rem;border-radius:7px;font-family:'DM Sans',sans-serif;
+          font-size:.85rem;font-weight:600;cursor:pointer;transition:opacity .15s;
+        " onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
+          <span style="font-size:1.1rem;line-height:1">+</span> Tambah Baris
+        </button>
+        <button type="button" onclick="removeRow()" style="
+          display:flex;align-items:center;gap:.45rem;
+          background:transparent;color:#e53e3e;border:1.5px solid #e53e3e;
+          padding:.5rem 1.1rem;border-radius:7px;font-family:'DM Sans',sans-serif;
+          font-size:.85rem;font-weight:600;cursor:pointer;transition:all .15s;
+        " onmouseover="this.style.background='#fff5f5'" onmouseout="this.style.background='transparent'">
+          <span style="font-size:1.1rem;line-height:1">&minus;</span> Hapus Baris
+        </button>
+        <span id="rowCount" style="font-size:.8rem;color:#718096;margin-left:auto"></span>
+      </div>
+
+      <!-- Checklist + deskripsi -->
+      <div class="checklist-section">
+        <div class="cl-panel">
+          <h3>Kondisi Barang <small style="font-weight:400;text-transform:none">(ceklis)</small></h3>
+          <div class="cl-item">
+            <input type="checkbox" id="c1" />
+            <label for="c1">Dokumen lengkap</label>
+          </div>
+          <div class="cl-item">
+            <input type="checkbox" id="c2" />
+            <label for="c2">Fisik barang tidak cacat</label>
+            <span class="cl-note">*</span>
+          </div>
+          <div class="cl-item">
+            <input type="checkbox" id="c3" />
+            <label for="c3">Asesoris pendukung lengkap</label>
+            <span class="cl-note">**</span>
+          </div>
+          <div class="cl-item">
+            <input type="checkbox" id="c4" />
+            <label for="c4">Jenis barang sesuai pesanan</label>
+            <span class="cl-note">***</span>
+          </div>
+          <div class="cl-item">
+            <input type="checkbox" id="c5" />
+            <label for="c5">Sambungan ke software baik <em style="font-size:.8em">(bila ada)</em></label>
+          </div>
+        </div>
+
+        <div class="cl-panel">
+          <h3>Pengecekan <small style="font-weight:400;text-transform:none">(deskripsi)</small></h3>
+          <textarea class="desc-textarea" rows="6" placeholder="Deskripsikan hasil pengecekan barang…"></textarea>
+        </div>
+      </div>
+
+      <div class="hasil-section">
+        <label>Hasil Pengecekan (Deskripsi)</label>
+        <textarea class="desc-textarea" rows="3" placeholder="Kesimpulan dan tindak lanjut…"></textarea>
+      </div>
+
+      <div class="form-footer">
+        <span id="formMsg" style="color:#86efac;font-size:.88rem;margin-right:auto;display:none"></span>
+        <button class="btn-reset" type="button" onclick="resetForm()">Reset Form</button>
+        <button class="btn-submit" type="button" id="btnSubmit" onclick="submitForm()">
+          Kirim Klaim Garansi →
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  © 2025 Loggerindo – Taharica Group. Seluruh hak cipta dilindungi.
+</footer>
+
+<script>
+  /* ── ACCORDION ─────────────────────────────────────────── */
+  function toggleAcc(btn) {
+    const body = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('active');
+
+    document.querySelectorAll('.accordion-btn.active').forEach(b => {
+      b.classList.remove('active');
+      b.nextElementSibling.classList.remove('open');
+    });
+
+    if (!isOpen) {
+      btn.classList.add('active');
+      body.classList.add('open');
+    }
+  }
+
+  /* ── TABLE ROWS ────────────────────────────────────────── */
+  const tbody = document.getElementById('itemsBody');
+  let rowCount = 0;
+
+  function updateRowNumbers() {
+    tbody.querySelectorAll('tr').forEach((tr, i) => {
+      tr.querySelector('.num').textContent = i + 1;
+      const radios = tr.querySelectorAll('input[type=radio]');
+      radios.forEach(r => r.name = 'cond' + (i + 1));
+    });
+    rowCount = tbody.querySelectorAll('tr').length;
+    const lbl = document.getElementById('rowCount');
+    if (lbl) lbl.textContent = rowCount + ' baris';
+  }
+
+  function createRow(n) {
+    const tr = document.createElement('tr');
+    tr.style.animation = 'fadeUp .25s ease both';
+    tr.innerHTML = `
+      <td class="num">${n}</td>
+      <td><input type="text" placeholder="Nama barang…" /></td>
+      <td><input type="text" placeholder="Merk / Tipe / Model" /></td>
+      <td><input type="text" placeholder="S/N" /></td>
+      <td><input type="number" min="0" placeholder="0" style="width:70px;text-align:center" /></td>
+      <td style="text-align:center">
+        <label class="cond-label"><input type="radio" name="cond${n}" value="ok" /></label>
+      </td>
+      <td style="text-align:center">
+        <label class="cond-label"><input type="radio" name="cond${n}" value="ng" /></label>
+      </td>
+    `;
+    return tr;
+  }
+
+  function addRow() {
+    const n = tbody.querySelectorAll('tr').length + 1;
+    tbody.appendChild(createRow(n));
+    updateRowNumbers();
+    // scroll the new row into view
+    tbody.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function removeRow() {
+    const rows = tbody.querySelectorAll('tr');
+    if (rows.length <= 1) return; // minimal 1 baris
+    const last = rows[rows.length - 1];
+    last.style.animation = 'none';
+    last.style.opacity = '0';
+    last.style.transition = 'opacity .2s';
+    setTimeout(() => { tbody.removeChild(last); updateRowNumbers(); }, 200);
+  }
+
+  // Init 5 baris default
+  for (let i = 1; i <= 5; i++) tbody.appendChild(createRow(i));
+  updateRowNumbers();
+
+  /* ── CONFIG ── Ganti dengan URL Apps Script kamu ─────── */
+  const APPS_SCRIPT_URL = https://script.google.com/a/macros/taharica.com/s/AKfycbytbvnzuORSPGGMeg5HCuutqOJziTQGNdk5mrSGkIVicb_4wfqF6QGLYT1uLUvvPAouNg/exec'https://script.google.com/a/macros/taharica.com/s/AKfycbytbvnzuORSPGGMeg5HCuutqOJziTQGNdk5mrSGkIVicb_4wfqF6QGLYT1uLUvvPAouNg/exec';
+
+  /* ── SUBMIT ────────────────────────────────────────────── */
+  async function submitForm() {
+    const btn = document.getElementById('btnSubmit');
+    const msg = document.getElementById('formMsg');
+
+    const inputs = document.querySelectorAll('.fh-cell input');
+    const vals   = [...inputs].map(i => i.value.trim());
+    const [nomor, tanggal, marketing, perusahaan, customer, telp] = vals;
+
+    if (!customer || !telp) {
+      msg.style.color   = '#fc8181';
+      msg.textContent   = 'Nama Customer dan Telp wajib diisi.';
+      msg.style.display = 'inline';
+      return;
+    }
+
+    // Kumpulkan semua baris tabel secara dinamis
+    const items = [];
+    document.querySelectorAll('#itemsBody tr').forEach(tr => {
+      const cols  = tr.querySelectorAll('td input[type=text], td input[type=number]');
+      const radio = tr.querySelector('input[type=radio]:checked');
+      // Lewati baris yang benar-benar kosong
+      const nama = cols[0]?.value.trim() || '';
+      if (!nama) return;
+      items.push({
+        nama,
+        merk    : cols[1]?.value.trim() || '',
+        sn      : cols[2]?.value.trim() || '',
+        qty     : cols[3]?.value.trim() || '',
+        kondisi : radio?.value || '-'
+      });
+    });
+
+    if (items.length === 0) {
+      msg.style.color   = '#fc8181';
+      msg.textContent   = 'Minimal isi 1 nama barang.';
+      msg.style.display = 'inline';
+      return;
+    }
+
+    const checks = [...document.querySelectorAll('.cl-item input[type=checkbox]')]
+      .map(cb => cb.checked ? cb.nextElementSibling.textContent.trim() : null)
+      .filter(Boolean).join(', ') || '-';
+
+    const textareas = document.querySelectorAll('.desc-textarea');
+    const deskripsi = textareas[0]?.value.trim() || '';
+    const hasil     = textareas[1]?.value.trim() || '';
+
+    // Payload terstruktur: meta (header) + items (array dinamis)
+    const payload = {
+      meta: {
+        timestamp : new Date().toLocaleString('id-ID'),
+        nomor, tanggal, marketing, perusahaan, customer, telp,
+        checklist : checks,
+        deskripsi,
+        hasil
+      },
+      items   // bisa 1, 5, 10, berapa pun
+    };
+
+    btn.disabled    = true;
+    btn.textContent = 'Mengirim ' + items.length + ' barang...';
+    msg.style.display = 'none';
+
+    try {
+      await fetch(APPS_SCRIPT_URL, {
+        method : 'POST',
+        mode   : 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify(payload)
+      });
+      msg.style.color   = '#86efac';
+      msg.textContent   = 'Klaim berhasil dikirim ke Google Sheets!';
+      msg.style.display = 'inline';
+      resetForm();
+    } catch (err) {
+      msg.style.color   = '#fc8181';
+      msg.textContent   = 'Gagal mengirim. Periksa koneksi atau URL Apps Script.';
+      msg.style.display = 'inline';
+    } finally {
+      btn.disabled    = false;
+      btn.textContent = 'Kirim Klaim Garansi';
+    }
+  }
+
+  /* ── RESET ─────────────────────────────────────────────── */
+  function resetForm() {
+    document.querySelectorAll('input:not([type=radio]):not([type=checkbox]), textarea')
+      .forEach(el => el.value = '');
+    document.querySelectorAll('input[type=radio], input[type=checkbox]')
+      .forEach(el => el.checked = false);
+  }
+</script>
+</body>
+</html>
