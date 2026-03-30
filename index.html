@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Garansi & Training – Loggerindo</title>
+<title>Form Klaim Garansi – Loggerindo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
+
   :root {
     --navy:   #0a1628;
     --navy2:  #132040;
@@ -22,7 +23,7 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     background: #f4f7fc;
     color: var(--navy);
     line-height: 1.65;
@@ -70,7 +71,7 @@
   }
 
   .hero h1 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Poppins', sans-serif;
     font-size: clamp(2rem, 5vw, 3.6rem);
     font-weight: 900;
     color: var(--white);
@@ -109,7 +110,7 @@
   }
 
   .section-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Poppins', sans-serif;
     font-size: clamp(1.4rem, 3vw, 2rem);
     color: var(--navy);
     font-weight: 700;
@@ -186,7 +187,7 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: .95rem;
     font-weight: 500;
     color: var(--navy);
@@ -251,7 +252,7 @@
     padding: 4rem 0;
   }
 
-  .form-section .section-title { color: var(--white); }
+  .form-section .section-title, .form-outer .section-title { color: var(--white); }
   .form-section .section-label { color: var(--gold-lt); }
 
   .form-card {
@@ -291,7 +292,7 @@
     border: none;
     border-bottom: 1.5px solid #cbd5e0;
     padding: .3rem 0;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: .93rem;
     color: var(--navy);
     outline: none;
@@ -343,7 +344,7 @@
     border: none;
     border-bottom: 1.5px solid #e2e8f0;
     padding: .25rem .15rem;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: .87rem;
     background: transparent;
     outline: none;
@@ -414,7 +415,7 @@
     border: 1.5px solid #e2e8f0;
     border-radius: 8px;
     padding: .7rem .9rem;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: .88rem;
     color: var(--navy);
     resize: vertical;
@@ -454,7 +455,7 @@
     background: transparent;
     border: 1.5px solid rgba(255,255,255,.3);
     color: rgba(255,255,255,.7);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: .9rem;
     font-weight: 500;
     padding: .7rem 1.6rem;
@@ -469,7 +470,7 @@
     background: linear-gradient(135deg, var(--gold), #e6a820);
     border: none;
     color: var(--navy);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: .95rem;
     font-weight: 700;
     padding: .75rem 2.2rem;
@@ -504,119 +505,26 @@
   .hero-content > *:nth-child(1) { animation-delay: .05s; }
   .hero-content > *:nth-child(2) { animation-delay: .2s; }
   .hero-content > *:nth-child(3) { animation-delay: .35s; }
+
+  /* Standalone override */
+  .form-outer {
+    background: var(--navy);
+    padding: 3rem 0 4rem;
+    min-height: 100vh;
+  }
+  body { background: var(--navy); }
 </style>
 </head>
 <body>
 
-<!-- ══ HERO ══════════════════════════════════════════════════════ -->
-<header class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <span class="hero-badge">Layanan Purna Jual</span>
-    <h1>Klaim Garansi Alat Anda<br /><span>dengan Mudah.</span></h1>
-    <p class="hero-sub">
-      Loggerindo melayani garansi setiap unit selama <strong style="color:#f0c84e">satu tahun</strong>
-      sejak tanggal pembelian dan training alat atau instrumentasi pengujian — ke seluruh Indonesia.
-    </p>
-  </div>
-</header>
-
-<!-- ══ KETERANGAN GARANSI ════════════════════════════════════════ -->
-<section>
+<div class="form-outer">
   <div class="container">
-    <p class="section-label">Ketentuan</p>
-    <h2 class="section-title">Keterangan Garansi</h2>
-
-    <div class="highlight-grid">
-      <div class="highlight-box">
-        <div class="hb-icon">🛠️</div>
-        <div class="hb-text">
-          <strong>Garansi Service 1 Tahun</strong>
-          <span>Garansi service selama 1 tahun di luar biaya sparepart untuk setiap unit.</span>
-        </div>
-      </div>
-      <div class="highlight-box">
-        <div class="hb-icon">🚗</div>
-        <div class="hb-text">
-          <strong>Biaya Kunjungan Ditanggung Customer</strong>
-          <span>Biaya kunjungan Engineering ke Customer ditanggung oleh Customer apabila ada kerusakan barang.</span>
-        </div>
-      </div>
-      <div class="highlight-box">
-        <div class="hb-icon">📦</div>
-        <div class="hb-text">
-          <strong>Pengiriman ke Penjual</strong>
-          <span>Jika barang dikirim ke Penjual, biaya pengiriman ditanggung sepenuhnya oleh Customer.</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ACCORDION: Hal yang membatalkan garansi -->
-    <p class="section-label" style="margin-top:2rem">Penting Diketahui</p>
-    <h2 class="section-title">Hal – Hal yang Dapat Membatalkan Garansi</h2>
-
-    <div class="accordion-wrap">
-      <div class="accordion-item">
-        <button class="accordion-btn" onclick="toggleAcc(this)">
-          <span class="acc-num">1</span>
-          <span style="flex:1">Kartu Garansi Tidak Diisi Lengkap / Tanpa Cap Dealer</span>
-          <span class="acc-icon">+</span>
-        </button>
-        <div class="accordion-body">
-          <div class="accordion-body-inner">
-            Garansi dinyatakan tidak berlaku apabila kartu garansi tidak diisi dengan lengkap
-            atau tidak terdapat cap resmi dari dealer yang bersangkutan.
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <button class="accordion-btn" onclick="toggleAcc(this)">
-          <span class="acc-num">2</span>
-          <span style="flex:1">Produk Rusak Akibat Kesalahan Pemakaian / Faktor Eksternal</span>
-          <span class="acc-icon">+</span>
-        </button>
-        <div class="accordion-body">
-          <div class="accordion-body-inner">
-            Kerusakan yang disebabkan oleh pengoperasian di luar spesifikasi produk, kesalahan pemakaian,
-            terkena cairan, bencana alam, atau perubahan tegangan listrik tidak termasuk dalam cakupan garansi.
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <button class="accordion-btn" onclick="toggleAcc(this)">
-          <span class="acc-num">3</span>
-          <span style="flex:1">Produk Telah Direparasi / Diubah oleh Pihak Lain</span>
-          <span class="acc-icon">+</span>
-        </button>
-        <div class="accordion-body">
-          <div class="accordion-body-inner">
-            Apabila produk telah dibuka, direparasi, atau dimodifikasi atas permintaan sendiri maupun oleh
-            pihak ketiga (segel rusak & garansi batal), klaim garansi tidak dapat diproses.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ══ FORM KLAIM GARANSI ════════════════════════════════════════ -->
-<section class="form-section">
-  <div class="container">
-    <p class="section-label">Ajukan Sekarang</p>
     <h2 class="section-title">Form Klaim Garansi</h2>
 
     <div class="form-card">
 
       <!-- Header info -->
       <div class="form-header-grid">
-        <div class="fh-cell">
-          <label>Nomor</label>
-          <input type="text" placeholder="No. Klaim" />
-        </div>
         <div class="fh-cell">
           <label>Tanggal</label>
           <input type="date" />
@@ -668,7 +576,7 @@
         <button type="button" onclick="addRow()" style="
           display:flex;align-items:center;gap:.45rem;
           background:var(--navy);color:var(--white);border:none;
-          padding:.5rem 1.1rem;border-radius:7px;font-family:'DM Sans',sans-serif;
+          padding:.5rem 1.1rem;border-radius:7px;font-family:'Poppins',sans-serif;
           font-size:.85rem;font-weight:600;cursor:pointer;transition:opacity .15s;
         " onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
           <span style="font-size:1.1rem;line-height:1">+</span> Tambah Baris
@@ -676,7 +584,7 @@
         <button type="button" onclick="removeRow()" style="
           display:flex;align-items:center;gap:.45rem;
           background:transparent;color:#e53e3e;border:1.5px solid #e53e3e;
-          padding:.5rem 1.1rem;border-radius:7px;font-family:'DM Sans',sans-serif;
+          padding:.5rem 1.1rem;border-radius:7px;font-family:'Poppins',sans-serif;
           font-size:.85rem;font-weight:600;cursor:pointer;transition:all .15s;
         " onmouseover="this.style.background='#fff5f5'" onmouseout="this.style.background='transparent'">
           <span style="font-size:1.1rem;line-height:1">&minus;</span> Hapus Baris
@@ -684,9 +592,9 @@
         <span id="rowCount" style="font-size:.8rem;color:#718096;margin-left:auto"></span>
       </div>
 
-      <!-- Checklist + deskripsi -->
-      <div class="checklist-section">
-        <div class="cl-panel">
+      <!-- Checklist -->
+      <div class="checklist-section" style="grid-template-columns:1fr;">
+        <div class="cl-panel" style="border-right:none;">
           <h3>Kondisi Barang <small style="font-weight:400;text-transform:none">(ceklis)</small></h3>
           <div class="cl-item">
             <input type="checkbox" id="c1" />
@@ -712,16 +620,20 @@
             <label for="c5">Sambungan ke software baik <em style="font-size:.8em">(bila ada)</em></label>
           </div>
         </div>
-
-        <div class="cl-panel">
-          <h3>Pengecekan <small style="font-weight:400;text-transform:none">(deskripsi)</small></h3>
-          <textarea class="desc-textarea" rows="6" placeholder="Deskripsikan hasil pengecekan barang…"></textarea>
-        </div>
       </div>
 
       <div class="hasil-section">
-        <label>Hasil Pengecekan (Deskripsi)</label>
-        <textarea class="desc-textarea" rows="3" placeholder="Kesimpulan dan tindak lanjut…"></textarea>
+        <label>Detail Kerusakan Barang</label>
+        <p style="font-size:.8rem;color:#718096;margin-bottom:.5rem;">
+          Berikan detail kerusakan barang secara lengkap
+          <span id="wordHint" style="font-weight:600;color:#e53e3e;">— minimal 200 kata</span>
+        </p>
+        <textarea class="desc-textarea" id="detailKerusakan" rows="7"
+          placeholder="Jelaskan kerusakan secara lengkap: kapan terjadi, gejala yang muncul, kondisi penggunaan, dll…"
+          oninput="countWords(this)"></textarea>
+        <div style="margin-top:.4rem;font-size:.8rem;color:#718096;text-align:right;">
+          <span id="wordCount" style="font-weight:700;color:#718096;">0</span> / 200 kata minimum
+        </div>
       </div>
 
       <div class="form-footer">
@@ -733,7 +645,7 @@
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <footer class="site-footer">
   © 2025 Loggerindo – Taharica Group. Seluruh hak cipta dilindungi.
@@ -813,7 +725,7 @@
   updateRowNumbers();
 
   /* ── CONFIG ── Ganti dengan URL Apps Script kamu ─────── */
-  const APPS_SCRIPT_URL = https://script.google.com/a/macros/taharica.com/s/AKfycbytbvnzuORSPGGMeg5HCuutqOJziTQGNdk5mrSGkIVicb_4wfqF6QGLYT1uLUvvPAouNg/exec'https://script.google.com/a/macros/taharica.com/s/AKfycbytbvnzuORSPGGMeg5HCuutqOJziTQGNdk5mrSGkIVicb_4wfqF6QGLYT1uLUvvPAouNg/exec';
+  const APPS_SCRIPT_URL = 'https://script.google.com/a/macros/taharica.com/s/AKfycbytbvnzuORSPGGMeg5HCuutqOJziTQGNdk5mrSGkIVicb_4wfqF6QGLYT1uLUvvPAouNg/exec';
 
   /* ── SUBMIT ────────────────────────────────────────────── */
   async function submitForm() {
@@ -822,7 +734,8 @@
 
     const inputs = document.querySelectorAll('.fh-cell input');
     const vals   = [...inputs].map(i => i.value.trim());
-    const [nomor, tanggal, marketing, perusahaan, customer, telp] = vals;
+    const [tanggal, marketing, perusahaan, customer, telp] = vals;
+    const nomor = '';
 
     if (!customer || !telp) {
       msg.style.color   = '#fc8181';
@@ -848,6 +761,17 @@
       });
     });
 
+    const detailEl = document.getElementById('detailKerusakan');
+    const detailText = detailEl ? detailEl.value.trim() : '';
+    const wordCount  = detailText.split(/\s+/).filter(Boolean).length;
+    if (wordCount < 200) {
+      msg.style.color   = '#fc8181';
+      msg.textContent   = 'Detail kerusakan minimal 200 kata (sekarang ' + wordCount + ' kata).';
+      msg.style.display = 'inline';
+      detailEl.focus();
+      return;
+    }
+
     if (items.length === 0) {
       msg.style.color   = '#fc8181';
       msg.textContent   = 'Minimal isi 1 nama barang.';
@@ -859,9 +783,8 @@
       .map(cb => cb.checked ? cb.nextElementSibling.textContent.trim() : null)
       .filter(Boolean).join(', ') || '-';
 
-    const textareas = document.querySelectorAll('.desc-textarea');
-    const deskripsi = textareas[0]?.value.trim() || '';
-    const hasil     = textareas[1]?.value.trim() || '';
+    const deskripsi = detailText;
+    const hasil     = '';
 
     // Payload terstruktur: meta (header) + items (array dinamis)
     const payload = {
@@ -897,6 +820,21 @@
     } finally {
       btn.disabled    = false;
       btn.textContent = 'Kirim Klaim Garansi';
+    }
+  }
+
+  /* ── WORD COUNTER ──────────────────────────────────────── */
+  function countWords(el) {
+    const words = el.value.trim().split(/\s+/).filter(Boolean).length;
+    const counter = document.getElementById('wordCount');
+    const hint    = document.getElementById('wordHint');
+    if (counter) {
+      counter.textContent = words;
+      counter.style.color = words >= 200 ? '#38a169' : '#e53e3e';
+    }
+    if (hint) {
+      hint.style.color = words >= 200 ? '#38a169' : '#e53e3e';
+      hint.textContent = words >= 200 ? '— syarat terpenuhi ✓' : '— minimal 200 kata';
     }
   }
 
